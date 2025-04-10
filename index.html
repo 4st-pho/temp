@@ -1,4 +1,41 @@
 <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Universal Link Redirect</title>
+  <style>
+    #openAppButton {
+      display: none;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <button id="openAppButton" onclick="window.location.href = 'https://www.grail.bz/';">
+    Open App
+  </button>
+
+  <script>
+    const userAgent = window.navigator.userAgent || '';
+    const isIOS = /iPhone|iPad|iPod/.test(userAgent);
+    const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent);
+
+    if (isIOS) {
+      if (isSafari) {
+        // If Safari on iOS → automatically open the app using the universal link
+        window.location.href = 'https://www.grail.bz/';
+      } else {
+        // If another browser on iOS (e.g., Chrome) → show button for manual tap
+        document.getElementById('openAppButton').style.display = 'inline-block';
+      }
+    }
+    // If not iOS (e.g., Android or desktop) → do nothing
+  </script>
+</body>
+</html>
+
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
@@ -11,7 +48,7 @@
 
   <script type="text/javascript">
     const link = document.createElement('a');
-    link.href = 'https://www.grail.bz/'; // Thay bằng Universal Link của bạn nếu cần
+    link.href = 'https://www.grail.bz/'; 
     link.target = '_self'; // hoặc '_blank' nếu muốn mở tab mới
     document.body.appendChild(link);
     link.click();
