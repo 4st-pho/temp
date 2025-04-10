@@ -16,20 +16,32 @@
       left: 50%;
       transform: translate(-50%, -50%);
     }
+    #userAgentInfo {
+      padding: 10px;
+      margin: 20px;
+      background-color: #f1f1f1;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
   </style>
 </head>
 <body>
+  <div id="userAgentInfo"></div>
   <button id="openAppButton" onclick="window.location.href = 'https://www.grail.bz/';">
     continue
   </button>
 
   <script>
     const userAgent = window.navigator.userAgent || '';
-    const isIOS = /iPhone|iPad|iPod/.test(userAgent);
-    const isSafari = /safari/.test(userAgent);
-    const isChrome = /crios/.test(userAgent);
+    const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
+    const isSafari = /safari/i.test(userAgent);
+    const isChrome = /crios|chrome/i.test(userAgent);
 
     if (isIOS) {
+      document.getElementById('userAgentDisplay').textContent = userAgent;
       if (isSafari && !isChrome) {
         // If Safari on iOS → automatically open the app using the universal link
         window.location.href = 'https://www.grail.bz/';
