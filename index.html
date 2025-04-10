@@ -37,12 +37,11 @@
   <script>
     const userAgent = window.navigator.userAgent || '';
     const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
-    const isSafari = /safari/i.test(userAgent);
-    const isChrome = /crios|chrome/i.test(userAgent);
+    const isSafari = /^((?!chrome|crios|fxios|edgios).)*safari/i.test(userAgent);
 
     if (isIOS) {
       document.getElementById('userAgentDisplay').textContent = userAgent;
-      if (isSafari && !isChrome) {
+      if (isSafari) {
         // If Safari on iOS → automatically open the app using the universal link
         window.location.href = 'https://www.grail.bz/';
       } else {
