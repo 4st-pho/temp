@@ -58,7 +58,9 @@
     if (isIOS) {
       if (isSafari) {
         // If Safari on iOS → automatically open the app using the universal link
-        window.location.href = 'https://www.grail.bz/';
+        setTimeout(() => {
+          window.location.href = 'https://www.grail.bz/';
+        }, 500);
       } else {
         document.getElementById('userAgentDisplay').textContent = userAgent;
         // If another browser on iOS (e.g., Chrome) → show button for manual tap
